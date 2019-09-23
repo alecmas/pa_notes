@@ -23,6 +23,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'nokogiri', '>= 1.10.4'
+gem 'clearance'
+gem 'webpacker'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

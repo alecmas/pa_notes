@@ -1,3 +1,6 @@
+require 'socket'
+require 'ipaddr'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -59,4 +62,20 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # make sure docker ip is allowed
+  if File.file?('/.dockerenv')
+    # Whitelist docker ip for web console
+    # Cannot render console from 172.27.0.1! Allowed networks: 127.0.0.1
+    Socket.ip_address_list.each do |addrinfo|
+      next unless addrinfo.ipv4?
+      next if addrinfo.ip_address == "127.0.0.1" # Already whitelisted
+
+      ip = IPAddr.new(addrinfo.ip_address).mask(24)
+
+      Logger.new(STDOUT).info "Adding #{ip.inspect} to config.web_console.whitelisted_ips"
+
+      config.web_console.whitelisted_ips = ip
+    end
+  end
 end
