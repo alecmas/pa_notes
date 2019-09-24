@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'nokogiri', '>= 1.10.4'
-gem 'clearance'
+gem 'clearance' # basic user authentication
 gem 'webpacker'
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -32,6 +32,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'minitest-rails' # test library (spec variation)
+  gem 'factory_girl_rails' # helps generates test data -- upgrade to factory_bot??
 end
 
 group :development do
