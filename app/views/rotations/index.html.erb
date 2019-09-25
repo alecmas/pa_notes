@@ -1,0 +1,20 @@
+<h1>Rotations</h1>
+
+<div>
+  <%= link_to "New Rotation", new_rotation_path %>
+</div>
+
+<div class="rotations">
+  <% @rotations.each do |rotation| %>
+    <div class="rotation">
+      <h3><%= link_to rotation.name, rotation_path(rotation) %></h3>
+      <p><%= rotation.description %></p>
+      <ul class="rotation-actions">
+        <li><%= link_to "Edit", edit_rotation_path(rotation) %></li>
+        <li><%= link_to "Delete", rotation_path(rotation), data: {
+          confirm: "Are you sure you want to delete: #{rotation.name}?",
+        }, method: :delete %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>

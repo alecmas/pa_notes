@@ -34,6 +34,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'minitest-rails' # test library (spec variation)
   gem 'factory_girl_rails' # helps generates test data -- upgrade to factory_bot??
+  gem 'faker'
 end
 
 group :development do
